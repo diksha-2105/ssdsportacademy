@@ -1,8 +1,9 @@
+
 import { useEffect, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, X } from "lucide-react";
 import "./BlogSection.css";
 
-// Blog images from src/assets/images
+// Blog images
 import ssdAcademyImage from "../../images/ssd-academy.png";
 import choosingGymnasticsImage from "../../images/choosing-gymnastics.png";
 import gymnasticsBenefitsImage from "../../images/gymnastics-benefits.png";
@@ -227,7 +228,6 @@ function BlogModal({ article, onClose }) {
                 event.currentTarget.style.display = "none";
               }}
             />
-            <span className="blog-image-fallback">SSD SPORT ACADEMY</span>
           </div>
 
           <div className="blog-article-content">
@@ -275,17 +275,16 @@ export default function BlogSection() {
               <div className="blog-card-image">
                 <img
                   src={article.image}
-                  alt=""
+                  alt={article.title}
                   loading="lazy"
                   onError={(event) => {
                     event.currentTarget.style.display = "none";
                   }}
                 />
-                <span className="blog-image-fallback">
-                  <BookOpen size={30} />
-                  <span>SSD SPORT ACADEMY</span>
+
+                <span className="blog-card-category">
+                  {article.category}
                 </span>
-                <span className="blog-card-category">{article.category}</span>
               </div>
 
               <div className="blog-card-content">
@@ -293,8 +292,10 @@ export default function BlogSection() {
                   <Clock3 size={14} />
                   {article.readTime}
                 </div>
+
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
+
                 <button
                   type="button"
                   className="blog-read-more"
