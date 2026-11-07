@@ -1,0 +1,22 @@
+/* TEAM */
+
+Developer: Siddhant Sunil Yadav
+
+Website:
+https://ssdsportacademy.com
+
+Technology:
+React
+Vite
+Tailwind CSS
+
+Location:
+Pune, Maharashtra
+
+/* COMPANY */
+
+SSD Sport Academy
+
+Professional Gymnastics Coaching
+
+Dhanori, Pune

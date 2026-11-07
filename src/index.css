@@ -1,0 +1,145 @@
+/* 2. Google Fonts: Outfit (Headings) + Inter (Body Text) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap");
+
+/* 1. Tailwind CSS v4 Engine Import */
+@import "tailwindcss";
+
+/* 3. Global CSS Variables & Base Overrides */
+@layer base {
+  :root {
+    --font-sans:
+      "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+    --font-heading: "Outfit", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    background-color: #000000;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Automatically Apply Athletic Outfit Font to All Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* 4. Layout & Reset Guardrails */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. Custom Highlight Color (Academy Red Theme) */
+::selection {
+  background-color: #dc2626; /* Tailwind Red 600 */
+  color: #ffffff;
+}
+
+/* 6. Sleek Minimal Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.9s ease;
+}
+
+.animate-fadeScale {
+  animation: fadeScale 0.9s ease;
+}
+
+.animate-slideLeft {
+  animation: slideLeft 0.9s ease;
+}
+
+.animate-slideRight {
+  animation: slideRight 0.9s ease;
+}
