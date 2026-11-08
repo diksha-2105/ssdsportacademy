@@ -1,3 +1,4 @@
+
 import {
   MapPin,
   Phone,
@@ -16,14 +17,21 @@ import Websitelogo from "../images/Websitelogo.png";
 export default function Footer({
   isCareersPage = false,
   isContactPage = false,
+  isAchievementsPage = false,
   onNavigate,
 }) {
-  const isSecondaryPage = isCareersPage || isContactPage;
+  const isSecondaryPage =
+    isCareersPage || isContactPage || isAchievementsPage;
+
   const quickLinks = [
     { name: "Home", href: isSecondaryPage ? "/" : "#home" },
     { name: "About", href: isSecondaryPage ? "/#about" : "#about" },
     { name: "Programs", href: isSecondaryPage ? "/#programs" : "#programs" },
     { name: "Gallery", href: isSecondaryPage ? "/#gallery" : "#gallery" },
+    {
+      name: "Achievements",
+      href: "/achievements",
+    },
     {
       name: "Reviews",
       href: isSecondaryPage ? "/#testimonials" : "#testimonials",
@@ -50,10 +58,10 @@ export default function Footer({
 
   return (
     <footer className="bg-black text-slate-300 overflow-hidden border-t border-slate-900">
-      {/* Main Footer */}
+      {/* MAIN FOOTER */}
       <div className="max-w-6xl mx-auto px-5 sm:px-6 py-16">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
-          {/* Brand */}
+          {/* BRAND */}
           <div>
             <div className="flex items-center gap-3">
               <img
@@ -78,7 +86,7 @@ export default function Footer({
               professional gymnastics classes for kids in Dhanori, Pune.
             </p>
 
-            {/* Social Buttons */}
+            {/* SOCIAL BUTTONS */}
             <div className="flex flex-wrap gap-3 mt-6">
               <a
                 href="https://www.instagram.com/ssdsportacademy/"
@@ -126,7 +134,7 @@ export default function Footer({
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* QUICK LINKS */}
           <div>
             <h3 className="text-white font-semibold text-base mb-6 tracking-wide">
               Explore
@@ -151,7 +159,7 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* CONTACT */}
           <div>
             <h3 className="text-white font-semibold text-base mb-6 tracking-wide">
               Contact Us
@@ -197,7 +205,7 @@ export default function Footer({
             </div>
           </div>
 
-          {/* Academy Hours */}
+          {/* ACADEMY HOURS */}
           <div>
             <h3 className="text-white font-semibold text-base mb-6 tracking-wide">
               Academy Hours
@@ -231,7 +239,7 @@ export default function Footer({
         </div>
       </div>
 
-      {/* Copyright */}
+      {/* COPYRIGHT */}
       <div className="border-t border-slate-900 bg-black/40">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <p className="text-center md:text-left">

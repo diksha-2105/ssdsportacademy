@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Menu, X, PhoneCall } from "lucide-react";
 import logo from "../images/Websitelogo.png";
@@ -7,6 +8,7 @@ export default function Navbar({
   onNavigate,
   isCareersPage = false,
   isContactPage = false,
+  isAchievementsPage = false,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,7 +33,9 @@ export default function Navbar({
     };
   }, []);
 
-  const isSecondaryPage = isCareersPage || isContactPage;
+  const isSecondaryPage =
+    isCareersPage || isContactPage || isAchievementsPage;
+
   const navItems = isSecondaryPage
     ? [
         { name: "Home", href: "/#home" },
@@ -39,7 +43,9 @@ export default function Navbar({
         { name: "Coaches", href: "/#coaches" },
         { name: "Programs", href: "/#programs" },
         { name: "Gallery", href: "/#gallery" },
+        { name: "Achievements", href: "/achievements" },
         { name: "Reviews", href: "/#testimonials" },
+        { name: "Blog", href: "/#blog" },
         { name: "Contact", href: "/contact" },
         { name: "Careers", href: "/careers" },
       ]
@@ -49,11 +55,19 @@ export default function Navbar({
         { name: "Coaches", href: "#coaches" },
         { name: "Programs", href: "#programs" },
         { name: "Gallery", href: "#gallery" },
+        { name: "Achievements", href: "/achievements" },
         { name: "Reviews", href: "#testimonials" },
+        { name: "Blog", href: "#blog" },
         { name: "Contact", href: "/contact" },
         { name: "Careers", href: "/careers" },
       ];
+
   const lightHeader = isScrolled || isSecondaryPage;
+
+  const isActivePage = (itemName) =>
+    (itemName === "Careers" && isCareersPage) ||
+    (itemName === "Contact" && isContactPage) ||
+    (itemName === "Achievements" && isAchievementsPage);
 
   const handleNavigation = (event, href) => {
     if (
@@ -90,7 +104,7 @@ export default function Navbar({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* ==================== LOGO ==================== */}
+          {/* LOGO */}
           <a
             href={isSecondaryPage ? "/" : "#home"}
             aria-label="SSD Sports Academy Home"
@@ -105,7 +119,6 @@ export default function Navbar({
               alt="SSD Sports Academy Logo"
               onError={(e) => {
                 e.currentTarget.onerror = null;
-
                 e.currentTarget.src =
                   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23ef4444'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-size='36' fill='white'%3ESSD%3C/text%3E%3C/svg%3E";
               }}
@@ -113,22 +126,17 @@ export default function Navbar({
             />
           </a>
 
-          {/* ==================== DESKTOP NAVIGATION ==================== */}
+          {/* DESKTOP NAVIGATION */}
           <nav
             aria-label="Primary navigation"
-            className="hidden lg:flex items-center gap-8"
+            className="hidden lg:flex items-center gap-6 xl:gap-8"
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(event) => handleNavigation(event, item.href)}
-                aria-current={
-                  (item.name === "Careers" && isCareersPage) ||
-                  (item.name === "Contact" && isContactPage)
-                    ? "page"
-                    : undefined
-                }
+                aria-current={isActivePage(item.name) ? "page" : undefined}
                 className={`group relative text-sm font-semibold tracking-wide transition-colors duration-200 py-1 ${
                   lightHeader
                     ? "text-gray-700 hover:text-red-600"
@@ -139,8 +147,7 @@ export default function Navbar({
 
                 <span
                   className={`absolute inset-x-0 bottom-0 h-0.5 origin-left bg-red-600 transition-transform duration-300 ${
-                    (item.name === "Careers" && isCareersPage) ||
-                    (item.name === "Contact" && isContactPage)
+                    isActivePage(item.name)
                       ? "scale-x-100"
                       : "scale-x-0 group-hover:scale-x-100"
                   }`}
@@ -149,7 +156,7 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* ==================== DESKTOP ENROLL BUTTON ==================== */}
+          {/* DESKTOP ENROLL BUTTON */}
           <div className="hidden lg:flex items-center">
             <button
               type="button"
@@ -157,12 +164,11 @@ export default function Navbar({
               className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
             >
               <PhoneCall size={16} className="animate-pulse" />
-
               <span>Enroll Now</span>
             </button>
           </div>
 
-          {/* ==================== MOBILE MENU BUTTON ==================== */}
+          {/* MOBILE MENU BUTTON */}
           <button
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -182,7 +188,7 @@ export default function Navbar({
         </div>
       </div>
 
-      {/* ==================== MOBILE DRAWER ==================== */}
+      {/* MOBILE DRAWER */}
       <div
         id="mobile-menu"
         className={`lg:hidden transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden ${
@@ -199,25 +205,24 @@ export default function Navbar({
               WebkitOverflowScrolling: "touch",
             }}
           >
-            {/* Mobile Navigation Links */}
+            {/* MOBILE NAVIGATION LINKS */}
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(event) => handleNavigation(event, item.href)}
-                aria-current={
-                  (item.name === "Careers" && isCareersPage) ||
-                  (item.name === "Contact" && isContactPage)
-                    ? "page"
-                    : undefined
-                }
-                className="block px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50/60 active:bg-red-50 transition-colors duration-150"
+                aria-current={isActivePage(item.name) ? "page" : undefined}
+                className={`block px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-150 ${
+                  isActivePage(item.name)
+                    ? "text-red-600 bg-red-50"
+                    : "text-gray-700 hover:text-red-600 hover:bg-red-50/60 active:bg-red-50"
+                }`}
               >
                 {item.name}
               </a>
             ))}
 
-            {/* Mobile Enroll Button */}
+            {/* MOBILE ENROLL BUTTON */}
             <div className="pt-2 mt-2 border-t border-gray-100">
               <button
                 type="button"
@@ -225,7 +230,6 @@ export default function Navbar({
                 className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-semibold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-150"
               >
                 <PhoneCall size={18} />
-
                 <span>Enroll Now</span>
               </button>
             </div>
